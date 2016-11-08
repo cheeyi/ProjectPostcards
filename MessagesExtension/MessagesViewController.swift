@@ -13,15 +13,19 @@ import Messages
 
 class MessagesViewController: MSMessagesAppViewController {
 
-    let helloWorldLabel = UILabel()
+    let helloWorldLabel = UILabel().withAutoLayout()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        helloWorldLabel.translatesAutoresizingMaskIntoConstraints = false
+        addTemporaryHelloWorldLabel()
+    }
+
+    // MARK: - View set up
+
+    func addTemporaryHelloWorldLabel() {
         helloWorldLabel.text = "Hello World"
         view.addSubview(helloWorldLabel)
-        helloWorldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        helloWorldLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate(helloWorldLabel.constraintsToCenterView())
     }
     
     // MARK: - Conversation Handling

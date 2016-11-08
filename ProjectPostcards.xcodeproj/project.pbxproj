@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0E9CD01DD282FE00AAA9FD /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E9CCF1DD282FE00AAA9FD /* UIViewExtensions.swift */; };
 		3C4BB9A11DD2784700CDB183 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4BB9A01DD2784700CDB183 /* Assets.xcassets */; };
 		3C4BB9A81DD2784700CDB183 /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3C4BB9A71DD2784700CDB183 /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3C4BB9AD1DD2784700CDB183 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4BB9AC1DD2784700CDB183 /* Messages.framework */; };
@@ -39,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C0E9CCF1DD282FE00AAA9FD /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		3C4BB99D1DD2784700CDB183 /* ProjectPostcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectPostcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4BB9A01DD2784700CDB183 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4BB9A21DD2784700CDB183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				3C4BB9AF1DD2784700CDB183 /* MessagesViewController.swift */,
 				3C4BB9B41DD2784700CDB183 /* Assets.xcassets */,
 				3C4BB9B61DD2784700CDB183 /* Info.plist */,
+				3C0E9CCF1DD282FE00AAA9FD /* UIViewExtensions.swift */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C0E9CD01DD282FE00AAA9FD /* UIViewExtensions.swift in Sources */,
 				3C4BB9B01DD2784700CDB183 /* MessagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +388,7 @@
 				3C4BB9BB1DD2784700CDB183 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C4BB9BD1DD2784700CDB183 /* Build configuration list for PBXNativeTarget "ProjectPostcards" */ = {
 			isa = XCConfigurationList;
@@ -392,6 +397,7 @@
 				3C4BB9BF1DD2784700CDB183 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
