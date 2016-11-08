@@ -9,16 +9,19 @@
 import UIKit
 import Messages
 
+@objc(MessagesViewController) // Workaround so we can do this without storyboards
+
 class MessagesViewController: MSMessagesAppViewController {
+
+    let helloWorldLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        helloWorldLabel.translatesAutoresizingMaskIntoConstraints = false
+        helloWorldLabel.text = "Hello World"
+        view.addSubview(helloWorldLabel)
+        helloWorldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        helloWorldLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     // MARK: - Conversation Handling
