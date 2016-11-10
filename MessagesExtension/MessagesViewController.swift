@@ -8,6 +8,7 @@
 
 import UIKit
 import Messages
+import Alamofire
 
 @objc(MessagesViewController) // Workaround so we can do this without storyboards
 
