@@ -12,8 +12,10 @@
 		3C4BB9A11DD2784700CDB183 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4BB9A01DD2784700CDB183 /* Assets.xcassets */; };
 		3C4BB9A81DD2784700CDB183 /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3C4BB9A71DD2784700CDB183 /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3C4BB9AD1DD2784700CDB183 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4BB9AC1DD2784700CDB183 /* Messages.framework */; };
-		3C4BB9B01DD2784700CDB183 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BB9AF1DD2784700CDB183 /* MessagesViewController.swift */; };
 		3C4BB9B51DD2784700CDB183 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4BB9B41DD2784700CDB183 /* Assets.xcassets */; };
+		3C8C5F341DDA268500C19150 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8C5F331DDA268500C19150 /* Destination.swift */; };
+		3C8C5F361DDA272300C19150 /* Postcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8C5F351DDA272300C19150 /* Postcard.swift */; };
+		3C8C5F3A1DDA27C400C19150 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8C5F391DDA27C400C19150 /* MessagesViewController.swift */; };
 		926E0E07802FBBE6962FB04D /* Pods_ProjectPostcards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918EACF2AFBC4CF5C1662B54 /* Pods_ProjectPostcards.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,9 +53,11 @@
 		3C4BB9A21DD2784700CDB183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C4BB9A71DD2784700CDB183 /* MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MessagesExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4BB9AC1DD2784700CDB183 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
-		3C4BB9AF1DD2784700CDB183 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		3C4BB9B41DD2784700CDB183 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4BB9B61DD2784700CDB183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C8C5F331DDA268500C19150 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		3C8C5F351DDA272300C19150 /* Postcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Postcard.swift; sourceTree = "<group>"; };
+		3C8C5F391DDA27C400C19150 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		5BA97B729CFFE95D38EBD8FC /* Pods_MessagesExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagesExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		918EACF2AFBC4CF5C1662B54 /* Pods_ProjectPostcards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectPostcards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA259FEDD33DB98D20BB2CE4 /* Pods-ProjectPostcards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectPostcards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectPostcards/Pods-ProjectPostcards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,12 +126,38 @@
 		3C4BB9AE1DD2784700CDB183 /* MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
-				3C4BB9AF1DD2784700CDB183 /* MessagesViewController.swift */,
 				3C4BB9B41DD2784700CDB183 /* Assets.xcassets */,
 				3C4BB9B61DD2784700CDB183 /* Info.plist */,
 				3C0E9CCF1DD282FE00AAA9FD /* UIViewExtensions.swift */,
+				3C8C5F321DDA267C00C19150 /* Models */,
+				3C8C5F371DDA278000C19150 /* ViewControllers */,
+				3C8C5F381DDA278000C19150 /* ViewModels */,
 			);
 			path = MessagesExtension;
+			sourceTree = "<group>";
+		};
+		3C8C5F321DDA267C00C19150 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3C8C5F331DDA268500C19150 /* Destination.swift */,
+				3C8C5F351DDA272300C19150 /* Postcard.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3C8C5F371DDA278000C19150 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3C8C5F391DDA27C400C19150 /* MessagesViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3C8C5F381DDA278000C19150 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		DFEE21E11C59DF626E3056F6 /* Pods */ = {
@@ -192,7 +222,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = "Chee Yi and Barry";
+				ORGANIZATIONNAME = "Team ProjectPostcards";
 				TargetAttributes = {
 					3C4BB99C1DD2784700CDB183 = {
 						CreatedOnToolsVersion = 8.1;
@@ -326,7 +356,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C0E9CD01DD282FE00AAA9FD /* UIViewExtensions.swift in Sources */,
-				3C4BB9B01DD2784700CDB183 /* MessagesViewController.swift in Sources */,
+				3C8C5F361DDA272300C19150 /* Postcard.swift in Sources */,
+				3C8C5F3A1DDA27C400C19150 /* MessagesViewController.swift in Sources */,
+				3C8C5F341DDA268500C19150 /* Destination.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +473,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cheeyibarry.ProjectPostcards.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MSP.ProjectPostcards.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -455,7 +487,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cheeyibarry.ProjectPostcards.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MSP.ProjectPostcards.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -469,7 +501,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProjectPostcards/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cheeyibarry.ProjectPostcards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MSP.ProjectPostcards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -482,7 +514,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ProjectPostcards/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cheeyibarry.ProjectPostcards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MSP.ProjectPostcards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -3,7 +3,7 @@
 //  ProjectPostcards
 //
 //  Created by Chee Yi Ong on 11/8/16.
-//  Copyright © 2016 Chee Yi and Barry. All rights reserved.
+//  Copyright © 2016 Team ProjectPostcards. All rights reserved.
 //
 
 import UIKit
