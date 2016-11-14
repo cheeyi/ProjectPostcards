@@ -16,18 +16,39 @@ import jot
 class MessagesViewController: MSMessagesAppViewController {
 
     let helloWorldLabel = UILabel().withAutoLayout()
+    var jotVC: JotViewController?
+    var sfImage = UIImage(named: "SFO - San Francisco")
+    lazy var testImage: UIImageView = {
+        return UIImageView(image: self.sfImage).withAutoLayout()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addTemporaryHelloWorldLabel()
+        addJotViewController()
     }
 
     // MARK: - View set up
 
-    func addTemporaryHelloWorldLabel() {
+    private func addTemporaryHelloWorldLabel() {
         helloWorldLabel.text = "Hello World"
+        testImage.contentMode = .scaleAspectFill
         view.addSubview(helloWorldLabel)
+        view.addSubview(testImage)
         NSLayoutConstraint.activate(helloWorldLabel.constraintsToCenterView())
+        testImage.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        testImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        testImage.topAnchor.constraint(equalTo: helloWorldLabel.bottomAnchor).isActive = true
+    }
+
+    private func addJotViewController() {
+        let jotVC = JotViewController()
+        jotVC.delegate = self
+        addChildViewController(jotVC)
+        view.addSubview(jotVC.view)
+        jotVC.didMove(toParentViewController: self)
+        jotVC.state = .text
+        self.jotVC = jotVC
     }
     
     // MARK: - Conversation Handling
@@ -70,6 +91,9 @@ class MessagesViewController: MSMessagesAppViewController {
         // Called before the extension transitions to a new presentation style.
     
         // Use this method to prepare for the change in presentation style.
+        if presentationStyle == .expanded {
+            testImage.image = jotVC!.draw(on: sfImage!)
+        }
     }
     
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
@@ -77,5 +101,8 @@ class MessagesViewController: MSMessagesAppViewController {
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
+}
+
+extension MessagesViewController: JotViewControllerDelegate {
 
 }
