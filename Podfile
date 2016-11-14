@@ -5,6 +5,7 @@ use_frameworks!
 target 'MessagesExtension' do
   # Pods for MessagesExtension
   pod 'Alamofire', '~> 4.0'
+  pod 'jot'
 end
 
 target 'ProjectPostcards' do
