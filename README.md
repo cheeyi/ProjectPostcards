@@ -21,6 +21,7 @@
 * Pods installed:
   * AlamoFire
 * Example of deeplink: `expda://flightSearch?destination=MSP`
+* Example of a destination image from Expedia server: `https://media.expedia.com/mobiata/mobile/apps/ExpediaBooking/TabletDestinations/images/MSP.jpg?downsize=750px:*&crop=w:300/750xw;center,top&output-quality=20&output-format=jpeg` note we can provide a size to be downsized to
 * Example of building an iMessage app start-to-finish: https://medium.com/lost-bananas/building-an-interactive-imessage-application-for-ios-10-in-swift-7da4a18bdeed#.tivfslu26 
 * WWDC video on iMessage apps: https://developer.apple.com/imessage/ 
 * API reference: https://developer.apple.com/reference/messages
