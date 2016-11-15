@@ -44,7 +44,7 @@ class PostcardConfigurationViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(constraints)
 
-        let navigationItem = UINavigationItem(title: "Configure your postcard")
+        let navigationItem = UINavigationItem(title: "Personalize your postcard")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneEditing))
         navBar.items = [navigationItem]
     }

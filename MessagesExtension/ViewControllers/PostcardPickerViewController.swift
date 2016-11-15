@@ -136,6 +136,10 @@ extension PostcardPickerViewController: UISearchBarDelegate, UISearchControllerD
 
     func updateSearchResults(for searchController: UISearchController) {
 
+        if messageParentViewController.presentationStyle == .compact {
+            messageParentViewController.requestPresentationStyle(.expanded)
+        }
+
         guard let text = searchController.searchBar.text else { return }
 
         // if user is deleting chars and count is decremented to zero we need to remove isSearching and reset filter
