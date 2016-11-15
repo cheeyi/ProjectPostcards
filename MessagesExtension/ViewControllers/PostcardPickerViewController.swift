@@ -6,10 +6,15 @@
 //  Copyright © 2016 Team ProjectPostcards. All rights reserved.
 //
 
+import Messages
 import UIKit
 
 class PostcardPickerViewController: UICollectionViewController {
 
+    /// The MSMessagesAppViewController responsible for interacting with the Messages application
+    lazy var messageParentViewController: MessagesViewController = {
+        return self.parent as! MessagesViewController
+    }()
     let reuseIdentifier = "PostcardCollectionViewCell"
     let viewModel = PostcardPickerViewModel()
 
@@ -21,6 +26,24 @@ class PostcardPickerViewController: UICollectionViewController {
     private func configureCollectionView() {
         collectionView?.backgroundColor = .white
         collectionView?.register(PostcardCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+
+    func postCardConfigurationViewDidEndEditing(postcard: UIImage, imageTitle: String, caption: String) {
+        dismiss(animated: true) { [unowned self] in
+            self.composeMessage(postcard: postcard, imageTitle: imageTitle, caption: caption) // TODO: Pass in what the user did in PostcardConfigurationViewController
+        }
+    }
+
+    /// Tells the main MessagesViewController to transition into compact mode and prepares the message to be sent
+    fileprivate func composeMessage(postcard: UIImage, imageTitle: String, caption: String) {
+        let layout = MSMessageTemplateLayout()
+        layout.image = UIImage(named: viewModel.imageNames.first!) // TODO: Use postcard
+        layout.imageTitle = "Totally a test" // TODO: Use imageTitle
+        layout.caption = "Hello world!" // TODO: Use caption
+
+        let message = MSMessage()
+        message.layout = layout
+        messageParentViewController.sendPostcard(message: message)
     }
 }
 
@@ -40,6 +63,13 @@ extension PostcardPickerViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PostcardCollectionViewCell
         cell.destination = Destination(name: viewModel.imageNames[indexPath.row])
         return cell
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let postcardConfigVC = PostcardConfigurationViewController(locationName: viewModel.imageNames[indexPath.row])
+        postcardConfigVC.delegate = self
+        messageParentViewController.requestPresentationStyle(.expanded)
+        present(postcardConfigVC, animated: true, completion: nil)
     }
 }
 

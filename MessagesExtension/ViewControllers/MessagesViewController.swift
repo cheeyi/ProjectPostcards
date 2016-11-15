@@ -25,13 +25,23 @@ class MessagesViewController: MSMessagesAppViewController {
     func presentPostcardViewController() {
         let collectionViewController = PostcardPickerViewController(collectionViewLayout: UICollectionViewFlowLayout())
         collectionViewController.view.frame = view.frame
+
+        presentChildViewController(childVC: collectionViewController)
+    }
+
+    func presentChildViewController(childVC: UIViewController) {
         // This is how we present view controllers in an iMessage application
-        addChildViewController(collectionViewController)
-        collectionViewController.didMove(toParentViewController: self)
-        view.addSubview(collectionViewController.view)
+        addChildViewController(childVC)
+        childVC.didMove(toParentViewController: self)
+        view.addSubview(childVC.view)
     }
     
     // MARK: - Conversation Handling
+
+    func sendPostcard(message: MSMessage) {
+        activeConversation?.insert(message, completionHandler: nil)
+        requestPresentationStyle(.compact)
+    }
     
     override func willBecomeActive(with conversation: MSConversation) {
         // Called when the extension is about to move from the inactive to active state.
