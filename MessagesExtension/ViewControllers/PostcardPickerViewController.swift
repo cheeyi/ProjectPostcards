@@ -87,9 +87,9 @@ extension PostcardPickerViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        messageParentViewController.requestPresentationStyle(.expanded)
         let postcardConfigVC = PostcardConfigurationViewController(locationName: viewModel.imageNames[indexPath.row])
         postcardConfigVC.delegate = self
-        messageParentViewController.requestPresentationStyle(.expanded)
         present(postcardConfigVC, animated: true, completion: nil)
     }
 
