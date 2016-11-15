@@ -24,7 +24,7 @@ struct PostcardPickerViewModel {
         "MLE - Maldives",
         "MSP - Minneapolis",
         "PEK - Beijing",
-        "RIO - Rio de Janairo",
+        "RIO - Rio de Janeiro",
         "ROM - Rome",
         "SFO - San Francisco",
         "SYD - Sydney",
