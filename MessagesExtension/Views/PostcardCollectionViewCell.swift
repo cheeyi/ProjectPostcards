@@ -14,13 +14,17 @@ class PostcardCollectionViewCell: UICollectionViewCell {
 
     var destination: Destination? {
         didSet {
-            destinationImageView.image = UIImage(named: destination!.name)
+            let destinationName = destination!.name
+            destinationImageView.image = UIImage(named: destinationName)
+            let indexForCityName = destinationName.index(destinationName.startIndex, offsetBy: 6)
+            locationNameLabel.text = destinationName.substring(from: indexForCityName)
             DispatchQueue.main.async { self.addGradient() }
         }
     }
 
     private let destinationImageView = UIImageView().withAutoLayout()
     private let gradientView = UIView().withAutoLayout()
+    private let locationNameLabel = UILabel().withAutoLayout()
 
     // MARK: - Initializers
 
@@ -28,6 +32,7 @@ class PostcardCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupConstraints()
         setupImageView()
+        setupLocationLabel()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -39,14 +44,22 @@ class PostcardCollectionViewCell: UICollectionViewCell {
     private func setupConstraints() {
         contentView.addSubview(destinationImageView)
         contentView.addSubview(gradientView)
+        contentView.addSubview(locationNameLabel)
         var constraints = destinationImageView.constraintsToFillSuperview()
         constraints += gradientView.constraintsToFillSuperview()
+        constraints.append(locationNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16.0))
+        constraints.append(locationNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0))
         NSLayoutConstraint.activate(constraints)
     }
 
     private func setupImageView() {
         destinationImageView.contentMode = .scaleAspectFill
         destinationImageView.clipsToBounds = true
+    }
+
+    private func setupLocationLabel() {
+        locationNameLabel.textColor = .white
+        locationNameLabel.font = UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightSemibold)
     }
 
     private func addGradient() {
