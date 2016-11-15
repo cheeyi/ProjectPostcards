@@ -2,23 +2,33 @@
 //  MessagesViewController.swift
 //  MessagesExtension
 //
-//  Created by Chee Yi Ong on 11/8/16.
-//  Copyright © 2016 Chee Yi and Barry. All rights reserved.
+//  Created by Chee Yi Ong on 11/15/16.
+//  Copyright © 2016 Team ProjectPostcards. All rights reserved.
 //
 
 import UIKit
 import Messages
+import Alamofire
+import jot
+
+@objc(MessagesViewController) // Workaround so we can do this without storyboards
 
 class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        presentPostcardViewController()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    // MARK: - View set up
+
+    func presentPostcardViewController() {
+        let collectionViewController = PostcardPickerViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        collectionViewController.view.frame = view.frame
+        // This is how we present view controllers in an iMessage application
+        addChildViewController(collectionViewController)
+        collectionViewController.didMove(toParentViewController: self)
+        view.addSubview(collectionViewController.view)
     }
     
     // MARK: - Conversation Handling
@@ -68,5 +78,4 @@ class MessagesViewController: MSMessagesAppViewController {
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
-
 }
