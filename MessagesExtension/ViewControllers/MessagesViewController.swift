@@ -23,7 +23,9 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - View set up
 
     func presentPostcardViewController() {
-        let collectionViewController = PostcardPickerViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let layout = UICollectionViewFlowLayout()
+        layout.headerReferenceSize = CGSize(width: 320.0, height: 44.0)
+        let collectionViewController = PostcardPickerViewController(collectionViewLayout: layout)
         collectionViewController.view.frame = view.frame
 
         presentChildViewController(childVC: collectionViewController)

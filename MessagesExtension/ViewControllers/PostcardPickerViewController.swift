@@ -16,16 +16,37 @@ class PostcardPickerViewController: UICollectionViewController {
         return self.parent as! MessagesViewController
     }()
     let reuseIdentifier = "PostcardCollectionViewCell"
+    let headerReuseIdentifier = "headerCell"
     let viewModel = PostcardPickerViewModel()
+    var filteredItems: [String] = [] {
+        didSet {
+            collectionView?.reloadData()
+        }
+    }
+    let searchController = UISearchController(searchResultsController: nil)
+    var isSearching = false
 
     override func viewDidLoad() {
         view.backgroundColor = .white
         configureCollectionView()
+        configureSearchController()
+        definesPresentationContext = true
+        filteredItems = viewModel.imageNames
+        assert(filteredItems.count > 0)
     }
 
     private func configureCollectionView() {
         collectionView?.backgroundColor = .white
         collectionView?.register(PostcardCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView?.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
+    }
+
+    private func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
     }
 
     func postCardConfigurationViewDidEndEditing(postcard: UIImage, imageTitle: String, caption: String) {
@@ -56,12 +77,12 @@ extension PostcardPickerViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.imageNames.count
+        return filteredItems.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PostcardCollectionViewCell
-        cell.destination = Destination(name: viewModel.imageNames[indexPath.row])
+        cell.destination = Destination(name: filteredItems[indexPath.row])
         return cell
     }
 
@@ -70,6 +91,13 @@ extension PostcardPickerViewController {
         postcardConfigVC.delegate = self
         messageParentViewController.requestPresentationStyle(.expanded)
         present(postcardConfigVC, animated: true, completion: nil)
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
+        headerView.addSubview(searchController.searchBar)
+        searchController.searchBar.sizeToFit()
+        return headerView
     }
 }
 
@@ -92,5 +120,40 @@ extension PostcardPickerViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
+    }
+}
+
+extension PostcardPickerViewController: UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // might not be needed
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // clear results when cancel is tapped
+        filteredItems = viewModel.imageNames
+    }
+
+    func updateSearchResults(for searchController: UISearchController) {
+
+        guard let text = searchController.searchBar.text else { return }
+
+        // if user is deleting chars and count is decremented to zero we need to remove isSearching and reset filter
+        let userClearedText = text.characters.count == 0
+        let hasFilteredResults = filteredItems.count < viewModel.imageNames.count
+        if userClearedText && hasFilteredResults && isSearching {
+            filteredItems = viewModel.imageNames
+            isSearching = false
+            return
+        }
+
+        guard text.characters.count > 0 else { return }
+
+        isSearching = true
+        print("update search results: \(text)")
+        let filteredStrings = viewModel.imageNames.filter { (string) -> Bool in
+            string.contains(text)
+        }
+        filteredItems = filteredStrings
     }
 }
