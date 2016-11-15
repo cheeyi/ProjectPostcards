@@ -49,18 +49,19 @@ class PostcardPickerViewController: UICollectionViewController {
         searchController.hidesNavigationBarDuringPresentation = false
     }
 
-    func postCardConfigurationViewDidEndEditing(postcard: UIImage, imageTitle: String, caption: String) {
+    func postCardConfigurationViewDidEndEditing(postcard: UIImage, imageTitle: String, imageSubtitle: String, caption: String) {
         dismiss(animated: true) { [unowned self] in
-            self.composeMessage(postcard: postcard, imageTitle: imageTitle, caption: caption) // TODO: Pass in what the user did in PostcardConfigurationViewController
+            self.composeMessage(postcard: postcard, imageTitle: imageTitle, imageSubtitle: imageSubtitle, caption: caption) // TODO: Pass in what the user did in PostcardConfigurationViewController
         }
     }
 
     /// Tells the main MessagesViewController to transition into compact mode and prepares the message to be sent
-    fileprivate func composeMessage(postcard: UIImage, imageTitle: String, caption: String) {
+    fileprivate func composeMessage(postcard: UIImage, imageTitle: String, imageSubtitle: String, caption: String) {
         let layout = MSMessageTemplateLayout()
         layout.image = UIImage(named: viewModel.imageNames.first!) // TODO: Use postcard
-        layout.imageTitle = "Totally a test" // TODO: Use imageTitle
-        layout.caption = "Hello world!" // TODO: Use caption
+        layout.imageTitle = "I sent you a postcard!" // TODO: Use imageTitle
+        layout.imageSubtitle = "SFO - San Francisco" // TODO: Use actual location name
+        layout.caption = "Check it out, and maybe visit the place yourself too!" // TODO: Use caption
 
         let message = MSMessage()
         message.layout = layout
