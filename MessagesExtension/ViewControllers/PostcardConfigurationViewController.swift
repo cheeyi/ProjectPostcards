@@ -70,9 +70,9 @@ class PostcardConfigurationViewController: UIViewController {
     /// Call to dismiss this modal view controller and send the resulting postcard out
     func doneEditing() {
         let postcard = UIImage(named: "SFO - San Francisco") // TODO: Use actual user image
-        let imageTitle = ""
-        let imageSubtitle = ""
-        let caption = ""
+        let imageTitle = "Test image title"
+        let imageSubtitle = "Test image subtitle"
+        let caption = "Test caption"
         delegate?.postCardConfigurationViewDidEndEditing(postcard: postcard!, imageTitle: imageTitle, imageSubtitle: imageSubtitle, caption: caption)
     }
 }

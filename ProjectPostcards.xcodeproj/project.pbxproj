@@ -20,6 +20,7 @@
 		3C8C5F411DDA55E400C19150 /* PostcardPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8C5F401DDA55E400C19150 /* PostcardPickerViewController.swift */; };
 		3C8C5F431DDA585A00C19150 /* PostcardPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8C5F421DDA585A00C19150 /* PostcardPickerViewModel.swift */; };
 		3CA434A31DDB97E6001CE531 /* PostcardConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA434A21DDB97E6001CE531 /* PostcardConfigurationViewController.swift */; };
+		3CC4B6EA1DDBBFCB0011CC7B /* PostcardRecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC4B6E91DDBBFCB0011CC7B /* PostcardRecipientViewController.swift */; };
 		84A850521DDBA93C00F659EB /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A850511DDBA93C00F659EB /* DrawingView.swift */; };
 		926E0E07802FBBE6962FB04D /* Pods_ProjectPostcards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918EACF2AFBC4CF5C1662B54 /* Pods_ProjectPostcards.framework */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		3C8C5F401DDA55E400C19150 /* PostcardPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostcardPickerViewController.swift; sourceTree = "<group>"; };
 		3C8C5F421DDA585A00C19150 /* PostcardPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostcardPickerViewModel.swift; sourceTree = "<group>"; };
 		3CA434A21DDB97E6001CE531 /* PostcardConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostcardConfigurationViewController.swift; sourceTree = "<group>"; };
+		3CC4B6E91DDBBFCB0011CC7B /* PostcardRecipientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostcardRecipientViewController.swift; sourceTree = "<group>"; };
 		5BA97B729CFFE95D38EBD8FC /* Pods_MessagesExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagesExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A850511DDBA93C00F659EB /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		918EACF2AFBC4CF5C1662B54 /* Pods_ProjectPostcards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectPostcards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +164,7 @@
 				3C8C5F391DDA27C400C19150 /* MessagesViewController.swift */,
 				3CA434A21DDB97E6001CE531 /* PostcardConfigurationViewController.swift */,
 				3C8C5F401DDA55E400C19150 /* PostcardPickerViewController.swift */,
+				3CC4B6E91DDBBFCB0011CC7B /* PostcardRecipientViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				3C8C5F361DDA272300C19150 /* Postcard.swift in Sources */,
 				3C8C5F411DDA55E400C19150 /* PostcardPickerViewController.swift in Sources */,
 				3CA434A31DDB97E6001CE531 /* PostcardConfigurationViewController.swift in Sources */,
+				3CC4B6EA1DDBBFCB0011CC7B /* PostcardRecipientViewController.swift in Sources */,
 				3C8C5F431DDA585A00C19150 /* PostcardPickerViewModel.swift in Sources */,
 				3C8C5F3A1DDA27C400C19150 /* MessagesViewController.swift in Sources */,
 				84A850521DDBA93C00F659EB /* DrawingView.swift in Sources */,

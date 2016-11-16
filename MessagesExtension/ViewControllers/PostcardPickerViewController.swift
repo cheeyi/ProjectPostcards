@@ -58,13 +58,22 @@ class PostcardPickerViewController: UICollectionViewController {
     /// Tells the main MessagesViewController to transition into compact mode and prepares the message to be sent
     fileprivate func composeMessage(postcard: UIImage, imageTitle: String, imageSubtitle: String, caption: String) {
         let layout = MSMessageTemplateLayout()
-        layout.image = UIImage(named: viewModel.imageNames.first!) // TODO: Use postcard
-        layout.imageTitle = "I sent you a postcard!" // TODO: Use imageTitle
-        layout.imageSubtitle = "SFO - San Francisco" // TODO: Use actual location name
-        layout.caption = "Check it out, and maybe visit the place yourself too!" // TODO: Use caption
+        layout.image = UIImage(named: viewModel.imageNames.first!) // TODO: Use `postcard`
+        layout.imageTitle = imageTitle
+        layout.imageSubtitle = imageSubtitle
+        layout.caption = caption
+
+        // This seems to be the only way that we can pass custom data to the app on the recipient's side
+        // Obviously we need to figure out how to also send the resulting UIImage over
+        var components = URLComponents()
+        components.queryItems = [
+            URLQueryItem(name: "locationName", value: imageSubtitle),
+            URLQueryItem(name: "caption", value: caption)
+        ]
 
         let message = MSMessage()
         message.layout = layout
+        message.url = components.url
         messageParentViewController.sendPostcard(message: message)
     }
 }

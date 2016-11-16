@@ -17,7 +17,6 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presentPostcardViewController()
     }
 
     // MARK: - View set up
@@ -29,6 +28,12 @@ class MessagesViewController: MSMessagesAppViewController {
         collectionViewController.view.frame = view.frame
 
         presentChildViewController(childVC: collectionViewController)
+    }
+
+    func presentRecipientViewController(forMessage selectedMessage: MSMessage) {
+        let payload = URLComponents(url: selectedMessage.url!, resolvingAgainstBaseURL: false)?.queryItems!
+        let recipientViewController = PostcardRecipientViewController(postcardImage: UIImage(), locationName: (payload?[0].value!)!)
+        presentChildViewController(childVC: recipientViewController)
     }
 
     func presentChildViewController(childVC: UIViewController) {
@@ -44,7 +49,21 @@ class MessagesViewController: MSMessagesAppViewController {
         activeConversation?.insert(message, completionHandler: nil)
         requestPresentationStyle(.compact)
     }
-    
+
+    override func didSelect(_ message: MSMessage, conversation: MSConversation) {
+        guard let selectedMessage = conversation.selectedMessage else { return }
+        presentRecipientViewController(forMessage: selectedMessage)
+    }
+
+    override func didBecomeActive(with conversation: MSConversation) {
+        // Decides which child view controller to display depending on if user ended up in the extension by selecting a message
+        guard let selectedMessage = conversation.selectedMessage else {
+            presentPostcardViewController()
+            return
+        }
+        presentRecipientViewController(forMessage: selectedMessage)
+    }
+
     override func willBecomeActive(with conversation: MSConversation) {
         // Called when the extension is about to move from the inactive to active state.
         // This will happen when the extension is about to present UI.
