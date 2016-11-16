@@ -55,6 +55,11 @@ struct Postcard {
         bookDate = queryBookDate ?? ""
         imageName = queryImageName ?? ""
     }
+
+    func destinationName() -> String {
+        let indexForCityName = imageName.index(imageName.startIndex, offsetBy: 6)
+        return imageName.substring(from: indexForCityName)
+    }
 }
 
 extension Postcard {

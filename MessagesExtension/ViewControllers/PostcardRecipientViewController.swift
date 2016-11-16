@@ -16,16 +16,22 @@ class PostcardRecipientViewController: UIViewController {
     private let messageLabel = UILabel()
     private let destinationLabel = UILabel()
     private let bookButton: UIButton
+    private let imageBackgroundView = UIView()
+    private let stampImageView: UIImageView
+    private let bookDateLabel = UILabel()
 
     init(postcard: Postcard) {
         self.postcard = postcard
-        guard let image = UIImage(named: postcard.imageName) else {
+        guard let destinationImage = UIImage(named: postcard.imageName) else {
             fatalError("image not found")
         }
-        postcardImageView = UIImageView(image: image)
+        guard let stampImage = UIImage(named: "air-mail") else { fatalError() }
+        postcardImageView = UIImageView(image: destinationImage)
+        stampImageView = UIImageView(image: stampImage)
         messageLabel.text = postcard.message
-        destinationLabel.text = postcard.destination.name
+        destinationLabel.text = postcard.destinationName()
         bookButton = UIButton(type: .system)
+        bookDateLabel.text = postcard.bookDate
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -56,10 +62,16 @@ class PostcardRecipientViewController: UIViewController {
     }
 
     private func setupLabels() {
-        messageLabel.font = UIFont.systemFont(ofSize: 24.0, weight: UIFontWeightThin)
+        messageLabel.font = UIFont(name: "Parisish", size: 36.0)
         messageLabel.textColor = .white
-        destinationLabel.font = UIFont.systemFont(ofSize: 36.0, weight: UIFontWeightSemibold)
+        destinationLabel.font = UIFont(name: "Airstream", size: 96.0)
+        destinationLabel.adjustsFontSizeToFitWidth = true
+        destinationLabel.minimumScaleFactor = 0.3
         destinationLabel.textColor = .white
+        destinationLabel.shadowOffset = CGSize(width: 1, height: 1)
+        destinationLabel.shadowColor = .black
+        bookDateLabel.font = UIFont.systemFont(ofSize: 28.0, weight: UIFontWeightSemibold)
+        bookDateLabel.textColor = UIColor(hexString: "0A3D6B")
     }
 
     private func setupButton() {
@@ -75,20 +87,41 @@ class PostcardRecipientViewController: UIViewController {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         destinationLabel.translatesAutoresizingMaskIntoConstraints = false
         bookButton.translatesAutoresizingMaskIntoConstraints = false
+        imageBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        stampImageView.translatesAutoresizingMaskIntoConstraints = false
+        bookDateLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(imageBackgroundView)
         view.addSubview(postcardImageView)
         view.addSubview(messageLabel)
         view.addSubview(destinationLabel)
         view.addSubview(bookButton)
+        view.addSubview(stampImageView)
+        view.addSubview(bookDateLabel)
+
+        stampImageView.alpha = 0.7
+
+        imageBackgroundView.backgroundColor = UIColor(hexString: "faebd7")
+        imageBackgroundView.layer.borderColor = UIColor.darkGray.cgColor
+        imageBackgroundView.layer.borderWidth = 1.0
+        imageBackgroundView.layer.shadowOpacity = 0.5
+        imageBackgroundView.layer.shadowRadius = 5
+        imageBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 5)
+        imageBackgroundView.clipsToBounds = false
     }
 
     private func setupConstraints() {
-        let margin: CGFloat = 20.0
-
+        let margin: CGFloat = 15.0
+        let borderMargin: CGFloat = 12.0
         var constraints: [NSLayoutConstraint] = []
-        constraints.append(postcardImageView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor))
-        constraints.append(postcardImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor))
-        constraints.append(postcardImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor))
-        constraints.append(postcardImageView.heightAnchor.constraint(equalToConstant: 300.0))
+        constraints.append(imageBackgroundView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor))
+        constraints.append(imageBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor))
+        constraints.append(imageBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor))
+        constraints.append(imageBackgroundView.heightAnchor.constraint(equalToConstant: 300.0))
+        constraints.append(postcardImageView.topAnchor.constraint(equalTo: imageBackgroundView.topAnchor, constant: borderMargin))
+        constraints.append(postcardImageView.leadingAnchor.constraint(equalTo: imageBackgroundView.leadingAnchor, constant: borderMargin))
+        constraints.append(postcardImageView.trailingAnchor.constraint(equalTo: imageBackgroundView.trailingAnchor, constant: -borderMargin))
+        constraints.append(postcardImageView.bottomAnchor.constraint(equalTo: imageBackgroundView.bottomAnchor, constant: -borderMargin))
         constraints.append(messageLabel.leadingAnchor.constraint(equalTo: postcardImageView.leadingAnchor, constant: margin))
         constraints.append(messageLabel.trailingAnchor.constraint(equalTo: postcardImageView.trailingAnchor, constant: -margin))
         constraints.append(messageLabel.bottomAnchor.constraint(equalTo: postcardImageView.bottomAnchor, constant: -margin))
@@ -99,7 +132,13 @@ class PostcardRecipientViewController: UIViewController {
         constraints.append(bookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor))
         constraints.append(bookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor))
         constraints.append(bookButton.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor))
-
+        constraints.append(stampImageView.trailingAnchor.constraint(equalTo: imageBackgroundView.trailingAnchor))
+        constraints.append(stampImageView.topAnchor.constraint(equalTo: imageBackgroundView.topAnchor))
+        constraints.append(stampImageView.widthAnchor.constraint(equalTo: stampImageView.heightAnchor))
+        constraints.append(stampImageView.widthAnchor.constraint(equalToConstant: 90.0))
+        constraints.append(bookDateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margin))
+        constraints.append(bookDateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin))
+        constraints.append(bookDateLabel.bottomAnchor.constraint(equalTo: bookButton.topAnchor, constant: -30.0))
         NSLayoutConstraint.activate(constraints)
     }
 

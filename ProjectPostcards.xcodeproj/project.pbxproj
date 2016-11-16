@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		027E041C1DDC1F8600029C7B /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E041B1DDC1F8600029C7B /* UIColorExtensions.swift */; };
+		027E04211DDCC53200029C7B /* Airstream.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 027E041D1DDCC53200029C7B /* Airstream.ttf */; };
+		027E04221DDCC53200029C7B /* DEFTONE.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 027E041E1DDCC53200029C7B /* DEFTONE.ttf */; };
+		027E04231DDCC53200029C7B /* Parisish.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 027E041F1DDCC53200029C7B /* Parisish.ttf */; };
+		027E04241DDCC53200029C7B /* SEASRN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 027E04201DDCC53200029C7B /* SEASRN.ttf */; };
 		2D715243A75EF57FB2D96036 /* Pods_MessagesExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA97B729CFFE95D38EBD8FC /* Pods_MessagesExtension.framework */; };
 		3C0E9CD01DD282FE00AAA9FD /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E9CCF1DD282FE00AAA9FD /* UIViewExtensions.swift */; };
 		3C4BB9A11DD2784700CDB183 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4BB9A01DD2784700CDB183 /* Assets.xcassets */; };
@@ -52,6 +56,10 @@
 
 /* Begin PBXFileReference section */
 		027E041B1DDC1F8600029C7B /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		027E041D1DDCC53200029C7B /* Airstream.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Airstream.ttf; path = Fonts/Airstream.ttf; sourceTree = "<group>"; };
+		027E041E1DDCC53200029C7B /* DEFTONE.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DEFTONE.ttf; path = Fonts/DEFTONE.ttf; sourceTree = "<group>"; };
+		027E041F1DDCC53200029C7B /* Parisish.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Parisish.ttf; path = Fonts/Parisish.ttf; sourceTree = "<group>"; };
+		027E04201DDCC53200029C7B /* SEASRN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SEASRN.ttf; path = Fonts/SEASRN.ttf; sourceTree = "<group>"; };
 		0C7D2AB345813B160CE47CD8 /* Pods-ProjectPostcards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectPostcards.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProjectPostcards/Pods-ProjectPostcards.release.xcconfig"; sourceTree = "<group>"; };
 		104194B957A27FEC9B7B23D1 /* Pods-MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
 		2486B4F0D1692BED82944012 /* Pods-MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagesExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MessagesExtension/Pods-MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +106,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		027E04251DDCC53A00029C7B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				027E041D1DDCC53200029C7B /* Airstream.ttf */,
+				027E041E1DDCC53200029C7B /* DEFTONE.ttf */,
+				027E041F1DDCC53200029C7B /* Parisish.ttf */,
+				027E04201DDCC53200029C7B /* SEASRN.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		3C4BB9961DD2784700CDB183 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +159,7 @@
 		3C4BB9AE1DD2784700CDB183 /* MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				027E04251DDCC53A00029C7B /* Fonts */,
 				3C4BB9B41DD2784700CDB183 /* Assets.xcassets */,
 				3C4BB9B61DD2784700CDB183 /* Info.plist */,
 				3C0E9CCF1DD282FE00AAA9FD /* UIViewExtensions.swift */,
@@ -296,6 +316,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C4BB9B51DD2784700CDB183 /* Assets.xcassets in Resources */,
+				027E04211DDCC53200029C7B /* Airstream.ttf in Resources */,
+				027E04221DDCC53200029C7B /* DEFTONE.ttf in Resources */,
+				027E04231DDCC53200029C7B /* Parisish.ttf in Resources */,
+				027E04241DDCC53200029C7B /* SEASRN.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
