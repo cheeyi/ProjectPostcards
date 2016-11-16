@@ -101,7 +101,7 @@ class PostcardConfigurationViewController: UIViewController {
         dateStackView.distribution = .fillProportionally
         dateStackView.alignment = .fill
         dateStackView.axis = .horizontal
-        dateStackView.spacing = 16.0
+        dateStackView.spacing = 10.0
         dateStackView.addArrangedSubview(selectDateLabel)
         dateStackView.addArrangedSubview(dateTextField)
     }
@@ -110,18 +110,19 @@ class PostcardConfigurationViewController: UIViewController {
         var constraints = [NSLayoutConstraint]()
         constraints.append(navBar.widthAnchor.constraint(equalToConstant: view.bounds.size.width))
         constraints.append(navBar.heightAnchor.constraint(equalToConstant: 44.0))
-        constraints.append(navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 90))
+        constraints.append(navBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor))
 
         constraints += imageView.constraintsToFillSuperviewHorizontally()
-        constraints.append(imageView.heightAnchor.constraint(equalToConstant: 150.0))
-        constraints.append(imageView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 8.0))
+        constraints.append(imageView.heightAnchor.constraint(equalToConstant: 200.0))
+        constraints.append(imageView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 0.0))
 
         constraints.append(messageTextField.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 16.0))
         constraints.append(messageTextField.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 16.0))
         constraints.append(messageTextField.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16.0))
 
         constraints.append(dateTextField.widthAnchor.constraint(equalToConstant: 150.0))
-        constraints += dateStackView.constraintsToFillSuperviewHorizontally(margins: 50.0)
+        constraints.append(dateStackView.widthAnchor.constraint(equalToConstant: 275.0))
+        constraints.append(dateStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0))
         constraints.append(dateStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16.0))
         constraints.append(dateStackView.heightAnchor.constraint(equalToConstant: 25.0))
 
@@ -147,5 +148,3 @@ class PostcardConfigurationViewController: UIViewController {
         delegate?.postCardConfigurationViewDidCancelEditing()
     }
 }
-
-//extension PostcardConfigurationViewController: UIDatePick
