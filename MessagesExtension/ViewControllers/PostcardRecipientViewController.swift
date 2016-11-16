@@ -93,11 +93,11 @@ class PostcardRecipientViewController: UIViewController {
         let logoIcon = UIImage(named: "expedia-icon")!
         bookButton.imageEdgeInsets = UIEdgeInsets(top: 8.0, left: 45.0, bottom: 8.0, right: 8.0)
         bookButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -45, bottom: 0, right: -8)
+        bookButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: -45, bottom: 0, right: 0)
         bookButton.setImage(logoIcon, for: .normal)
         if let buttonImageView = bookButton.imageView {
             buttonImageView.contentMode = .scaleAspectFit
         }
-
     }
 
     private func setupViews() {
