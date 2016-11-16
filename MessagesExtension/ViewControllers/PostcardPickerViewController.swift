@@ -15,6 +15,8 @@ protocol PostcardPickerViewControllerDelegate: class {
 
 class PostcardPickerViewController: UICollectionViewController {
 
+    let margin: CGFloat = 8.0
+
     /// The MSMessagesAppViewController responsible for interacting with the Messages application
     lazy var messageParentViewController: MessagesViewController = {
         return self.parent as! MessagesViewController
@@ -41,6 +43,13 @@ class PostcardPickerViewController: UICollectionViewController {
     }
 
     private func configureCollectionView() {
+        let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout
+        flowLayout?.sectionInset = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
+        flowLayout?.minimumLineSpacing = margin
+        flowLayout?.minimumInteritemSpacing = margin
+        let w = ((collectionView?.frame.width)! - 3 * margin) / 2.0
+        flowLayout?.itemSize = CGSize(width: w, height: w)
+
         collectionView?.backgroundColor = .white
         collectionView?.register(PostcardCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView?.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
@@ -83,28 +92,6 @@ extension PostcardPickerViewController {
         headerView.addSubview(searchController.searchBar)
         searchController.searchBar.sizeToFit()
         return headerView
-    }
-}
-
-// MARK: - UICollectionViewFlowLayoutDelegate
-
-extension PostcardPickerViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemsPerRow: CGFloat = 2
-        let paddingSpace = 8 * (itemsPerRow + 2)
-        let availableWidth = collectionView.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-
-        return CGSize(width: widthPerItem, height: widthPerItem)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
     }
 }
 
