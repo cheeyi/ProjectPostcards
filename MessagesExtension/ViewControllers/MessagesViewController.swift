@@ -143,6 +143,10 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
+        if presentationStyle == .compact {
+            guard let conversation = activeConversation else { fatalError() }
+            presentViewController(for: conversation, with: .compact)
+        }
         // Called after the extension transitions to a new presentation style.
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
