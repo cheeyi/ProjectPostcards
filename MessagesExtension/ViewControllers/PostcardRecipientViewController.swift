@@ -51,11 +51,10 @@ class PostcardRecipientViewController: UIViewController {
 
     func deeplinkToExpediaBookings() {
         // TODO: Assume origin is MSP for demo purposes
-        let dateString = todaysDate()
         let imageName = postcard.imageName
         let indexForAirportCode = imageName.index(imageName.startIndex, offsetBy: 3)
         let airportCode = postcard.imageName.substring(to: indexForAirportCode)
-        let constructedDeeplinkURL = URL(string: "expda://flightSearch?origin=MSP&destination=\(airportCode)&departureDate=\(dateString)&numAdults=2")!
+        let constructedDeeplinkURL = URL(string: "expda://flightSearch?origin=MSP&destination=\(airportCode)&departureDate=\(postcard.bookDate)&numAdults=2")!
         UIApplication.shared.open(constructedDeeplinkURL,
                                   options: [String: Any](),
                                   completionHandler: nil)
@@ -140,11 +139,5 @@ class PostcardRecipientViewController: UIViewController {
         constraints.append(bookDateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin))
         constraints.append(bookDateLabel.bottomAnchor.constraint(equalTo: bookButton.topAnchor, constant: -30.0))
         NSLayoutConstraint.activate(constraints)
-    }
-
-    private func todaysDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.string(from: Date())
     }
 }
