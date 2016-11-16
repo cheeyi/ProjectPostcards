@@ -168,7 +168,7 @@ extension MessagesViewController {
         let layout = MSMessageTemplateLayout()
         layout.image = UIImage(named: postcard.imageName)
         layout.imageTitle = postcard.message
-        layout.imageSubtitle = postcard.destination.name
+        layout.imageSubtitle = postcard.destinationName()
         layout.caption = "When should we go? How about \(postcard.bookDate)"
 
         // pass custom data to the app on the recipient's side

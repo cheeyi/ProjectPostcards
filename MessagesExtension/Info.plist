@@ -2,14 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>expda</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>ProjectPostcards</string>
+	<string>Postcards</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,12 +20,9 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>UIAppFonts</key>
+	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>Airstream.ttf</string>
-		<string>DEFTONE.ttf</string>
-		<string>Parisish.ttf</string>
-		<string>SEASRN.ttf</string>
+		<string>expda</string>
 	</array>
 	<key>NSExtension</key>
 	<dict>
@@ -38,5 +31,12 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>MessagesViewController</string>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Airstream.ttf</string>
+		<string>DEFTONE.ttf</string>
+		<string>Parisish.ttf</string>
+		<string>SEASRN.ttf</string>
+	</array>
 </dict>
 </plist>

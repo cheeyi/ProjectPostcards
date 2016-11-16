@@ -71,6 +71,8 @@ class PostcardConfigurationViewController: UIViewController {
         messageTextField.font = UIFont(name: "Parisish", size: 36.0)
         messageTextField.textColor = .white
         messageTextField.text = "Greetings"
+        messageTextField.layer.shadowColor = UIColor.black.cgColor
+        messageTextField.layer.shadowOffset = CGSize(width: 1, height: 1)
     }
 
     private func setupDateFieldAndPicker() {
