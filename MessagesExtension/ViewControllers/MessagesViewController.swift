@@ -47,6 +47,10 @@ class MessagesViewController: MSMessagesAppViewController {
             }
         }
 
+        addChildViewController(controller: controller)
+    }
+
+    fileprivate func addChildViewController(controller: UIViewController) {
         // Remove any existing child controllers.
         for child in childViewControllers {
             child.willMove(toParentViewController: nil)
@@ -69,7 +73,7 @@ class MessagesViewController: MSMessagesAppViewController {
         controller.didMove(toParentViewController: self)
     }
 
-    private func instantiatePostcardViewController() -> UIViewController {
+    fileprivate func instantiatePostcardViewController() -> UIViewController {
         print("🏙 instantiate Postcard ViewController")
         let layout = UICollectionViewFlowLayout()
         layout.headerReferenceSize = CGSize(width: 320.0, height: 44.0)
@@ -143,10 +147,7 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-        if presentationStyle == .compact {
-            guard let conversation = activeConversation else { fatalError() }
-            presentViewController(for: conversation, with: .compact)
-        }
+        showCollectionView()
         // Called after the extension transitions to a new presentation style.
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
@@ -166,6 +167,10 @@ extension MessagesViewController {
     func postCardConfigurationViewDidEndEditing(postcard: Postcard, controller: UIViewController) {
         composeMessage(postcard: postcard)
 //        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func postCardConfigurationViewDidCancelEditing() {
+        addChildViewController(controller: instantiatePostcardViewController())
     }
 
     fileprivate func composeMessage(postcard: Postcard) {
@@ -188,5 +193,12 @@ extension MessagesViewController {
         message.layout = layout
         message.url = components.url
         sendPostcard(message: message)
+    }
+
+    func showCollectionView() {
+        if presentationStyle == .compact {
+            guard let conversation = activeConversation else { fatalError() }
+            presentViewController(for: conversation, with: .compact)
+        }
     }
 }

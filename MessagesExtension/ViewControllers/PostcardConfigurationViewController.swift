@@ -36,6 +36,7 @@ class PostcardConfigurationViewController: UIViewController {
 
         let navigationItem = UINavigationItem(title: "Personalize your postcard")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneEditing))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelEditing))
         navBar.items = [navigationItem]
 
         return navBar
@@ -140,6 +141,10 @@ class PostcardConfigurationViewController: UIViewController {
                                 bookDate: selectedDateString,
                                 imageName: imageName)
         delegate?.postCardConfigurationViewDidEndEditing(postcard: postcard, controller: self)
+    }
+
+    func cancelEditing() {
+        delegate?.postCardConfigurationViewDidCancelEditing()
     }
 }
 
