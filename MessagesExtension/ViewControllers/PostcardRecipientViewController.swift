@@ -56,9 +56,9 @@ class PostcardRecipientViewController: UIViewController {
     }
 
     private func setupLabels() {
-        messageLabel.font = UIFont.systemFont(ofSize: 24.0, weight: UIFontWeightThin)
+        messageLabel.font = UIFont(name: "DEFTONE", size: 24.0)
         messageLabel.textColor = .white
-        destinationLabel.font = UIFont.systemFont(ofSize: 36.0, weight: UIFontWeightSemibold)
+        destinationLabel.font = UIFont(name: "Airstream", size: 36.0)
         destinationLabel.textColor = .white
     }
 
