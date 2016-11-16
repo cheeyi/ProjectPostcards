@@ -12,8 +12,17 @@ import UIKit
 class PostcardConfigurationViewController: UIViewController {
 
     let imageName: String
-    let imageView: UIImageView
+    var selectedDateString = ""
     var delegate: MessagesViewController?
+    let imageView: UIImageView
+
+    // MARK: - Date
+
+    let dateFormatter = DateFormatter()
+    let dateStackView = UIStackView().withAutoLayout()
+    let selectDateLabel = UILabel().withAutoLayout()
+    let dateTextField = UITextField().withAutoLayout()
+    let datePicker = UIDatePicker()
 
     lazy var navBar: UINavigationBar = {
         let navBar = UINavigationBar(frame: CGRect.zero).withAutoLayout()
@@ -31,8 +40,6 @@ class PostcardConfigurationViewController: UIViewController {
     init(locationName: String) {
         imageName = locationName
         imageView = UIImageView(image: UIImage(named: imageName)!).withAutoLayout()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -46,8 +53,38 @@ class PostcardConfigurationViewController: UIViewController {
 
         view.addSubview(navBar)
         view.addSubview(imageView)
+        view.addSubview(dateStackView)
 
+        setupDateFieldAndPicker()
         setupConstraints()
+    }
+
+    private func setupImageView() {
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+    }
+
+    private func setupDateFieldAndPicker() {
+        selectDateLabel.text = "Select date"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        datePicker.datePickerMode = .date
+        datePicker.backgroundColor = .white
+        datePicker.addTarget(self, action: #selector(updateDateField), for: .valueChanged)
+        datePicker.date = Date()
+
+        dateTextField.borderStyle = .line
+        dateTextField.backgroundColor = .white
+        dateTextField.inputView = datePicker
+        dateTextField.tintColor = .clear
+        dateTextField.textAlignment = .center
+
+        dateStackView.distribution = .fillProportionally
+        dateStackView.alignment = .fill
+        dateStackView.axis = .horizontal
+        dateStackView.spacing = 16.0
+        dateStackView.addArrangedSubview(selectDateLabel)
+        dateStackView.addArrangedSubview(dateTextField)
     }
 
     private func setupConstraints() {
@@ -60,15 +97,28 @@ class PostcardConfigurationViewController: UIViewController {
         constraints.append(imageView.heightAnchor.constraint(equalToConstant: 150.0))
         constraints.append(imageView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 8.0))
 
+        constraints.append(dateTextField.widthAnchor.constraint(equalToConstant: 150.0))
+        constraints += dateStackView.constraintsToFillSuperviewHorizontally(margins: 50.0)
+        constraints.append(dateStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16.0))
+        constraints.append(dateStackView.heightAnchor.constraint(equalToConstant: 25.0))
+
         NSLayoutConstraint.activate(constraints)
+    }
+
+    func updateDateField() {
+        let selectedDate = dateFormatter.string(from: datePicker.date)
+        selectedDateString = selectedDate
+        dateTextField.text = selectedDate
     }
 
     /// Call to dismiss this modal view controller and send the resulting postcard out
     func doneEditing() {
         let postcard = Postcard(message: "Should we go?",
                                 destination: Destination(name: imageName),
-                                bookDate: "today",
+                                bookDate: selectedDateString,
                                 imageName: imageName)
         delegate?.postCardConfigurationViewDidEndEditing(postcard: postcard, controller: self)
     }
 }
+
+//extension PostcardConfigurationViewController: UIDatePick
