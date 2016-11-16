@@ -9,6 +9,10 @@
 import Messages
 import UIKit
 
+protocol PostcardPickerViewControllerDelegate: class {
+    func postcardsViewControllerDidSelectAdd(_ selectedItemName: String, controller: PostcardPickerViewController)
+}
+
 class PostcardPickerViewController: UICollectionViewController {
 
     /// The MSMessagesAppViewController responsible for interacting with the Messages application
@@ -18,6 +22,7 @@ class PostcardPickerViewController: UICollectionViewController {
     let reuseIdentifier = "PostcardCollectionViewCell"
     let headerReuseIdentifier = "headerCell"
     let viewModel = PostcardPickerViewModel()
+    weak var delegate: PostcardPickerViewControllerDelegate?
     var filteredItems: [String] = [] {
         didSet {
             collectionView?.reloadData()
@@ -48,34 +53,6 @@ class PostcardPickerViewController: UICollectionViewController {
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
     }
-
-    func postCardConfigurationViewDidEndEditing(postcard: UIImage, imageTitle: String, imageSubtitle: String, caption: String) {
-        dismiss(animated: true) { [unowned self] in
-            self.composeMessage(postcard: postcard, imageTitle: imageTitle, imageSubtitle: imageSubtitle, caption: caption) // TODO: Pass in what the user did in PostcardConfigurationViewController
-        }
-    }
-
-    /// Tells the main MessagesViewController to transition into compact mode and prepares the message to be sent
-    fileprivate func composeMessage(postcard: UIImage, imageTitle: String, imageSubtitle: String, caption: String) {
-        let layout = MSMessageTemplateLayout()
-        layout.image = UIImage(named: viewModel.imageNames.first!) // TODO: Use `postcard`
-        layout.imageTitle = imageTitle
-        layout.imageSubtitle = imageSubtitle
-        layout.caption = caption
-
-        // This seems to be the only way that we can pass custom data to the app on the recipient's side
-        // Obviously we need to figure out how to also send the resulting UIImage over
-        var components = URLComponents()
-        components.queryItems = [
-            URLQueryItem(name: "locationName", value: imageSubtitle),
-            URLQueryItem(name: "caption", value: caption)
-        ]
-
-        let message = MSMessage()
-        message.layout = layout
-        message.url = components.url
-        messageParentViewController.sendPostcard(message: message)
-    }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
@@ -97,10 +74,8 @@ extension PostcardPickerViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        messageParentViewController.requestPresentationStyle(.expanded)
-        let postcardConfigVC = PostcardConfigurationViewController(locationName: viewModel.imageNames[indexPath.row])
-        postcardConfigVC.delegate = self
-        present(postcardConfigVC, animated: true, completion: nil)
+        let imageName = filteredItems[indexPath.row]
+        delegate?.postcardsViewControllerDidSelectAdd(imageName, controller: self)
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
