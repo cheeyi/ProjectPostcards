@@ -32,7 +32,7 @@ class PostcardConfigurationViewController: UIViewController {
         let navBar = UINavigationBar(frame: CGRect.zero).withAutoLayout()
         navBar.barTintColor = .white
         navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,
-                                      NSFontAttributeName: UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightMedium)]
+                                      NSFontAttributeName: UIFont.systemFont(ofSize: 16.0, weight: UIFontWeightSemibold)]
 
         let navigationItem = UINavigationItem(title: "Personalize your postcard")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneEditing))
@@ -88,11 +88,14 @@ class PostcardConfigurationViewController: UIViewController {
         datePicker.addTarget(self, action: #selector(updateDateField), for: .valueChanged)
         datePicker.date = Date()
 
-        dateTextField.borderStyle = .line
         dateTextField.backgroundColor = .white
         dateTextField.inputView = datePicker
         dateTextField.tintColor = .clear
         dateTextField.textAlignment = .center
+        dateTextField.layer.cornerRadius = 8.0
+        dateTextField.borderStyle = .roundedRect
+        dateTextField.layer.borderWidth = 1.0
+        dateTextField.layer.borderColor = UIColor.darkGray.cgColor
 
         dateStackView.distribution = .fillProportionally
         dateStackView.alignment = .fill
