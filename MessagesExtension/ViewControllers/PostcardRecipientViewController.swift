@@ -87,10 +87,12 @@ class PostcardRecipientViewController: UIViewController {
         bookButton.setTitle("Book with Expedia", for: .normal)
         bookButton.setTitleColor(.white, for: .normal)
         bookButton.titleLabel?.font = UIFont.systemFont(ofSize: 24.0, weight: UIFontWeightThin)
+        bookButton.tintColor = .white
         bookButton.backgroundColor = UIColor(hexString: "1A6EFF")
         bookButton.addTarget(self, action: #selector(PostcardRecipientViewController.deeplinkToExpediaBookings), for: .touchUpInside)
         let logoIcon = UIImage(named: "expedia-icon")!
-        bookButton.imageEdgeInsets = UIEdgeInsets(top: 8.0, left: 0.0, bottom: 8.0, right: 10.0)
+        bookButton.imageEdgeInsets = UIEdgeInsets(top: 8.0, left: 45.0, bottom: 8.0, right: 8.0)
+        bookButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -45, bottom: 0, right: -8)
         bookButton.setImage(logoIcon, for: .normal)
         if let buttonImageView = bookButton.imageView {
             buttonImageView.contentMode = .scaleAspectFit
@@ -142,7 +144,7 @@ class PostcardRecipientViewController: UIViewController {
         constraints.append(destinationLabel.topAnchor.constraint(equalTo: postcardImageView.topAnchor, constant: margin))
         constraints.append(destinationLabel.leadingAnchor.constraint(equalTo: postcardImageView.leadingAnchor, constant: margin))
         constraints.append(destinationLabel.trailingAnchor.constraint(equalTo: postcardImageView.trailingAnchor, constant: -margin))
-        constraints.append(bookButton.heightAnchor.constraint(equalToConstant: 75.0))
+        constraints.append(bookButton.heightAnchor.constraint(equalToConstant: 60.0))
         constraints.append(bookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor))
         constraints.append(bookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor))
         constraints.append(bookButton.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor))
