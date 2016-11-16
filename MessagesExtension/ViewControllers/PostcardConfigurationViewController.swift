@@ -14,6 +14,10 @@ class PostcardConfigurationViewController: UIViewController {
     let imageName: String
     var selectedDateString = ""
     var delegate: MessagesViewController?
+
+    // MARK: - Destination image
+
+    let messageTextField = UITextField().withAutoLayout()
     let imageView: UIImageView
 
     // MARK: - Date
@@ -53,15 +57,20 @@ class PostcardConfigurationViewController: UIViewController {
 
         view.addSubview(navBar)
         view.addSubview(imageView)
+        view.addSubview(messageTextField)
         view.addSubview(dateStackView)
 
         setupDateFieldAndPicker()
+        setupImageView()
         setupConstraints()
     }
 
     private func setupImageView() {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        messageTextField.font = UIFont(name: "Parisish", size: 36.0)
+        messageTextField.textColor = .white
+        messageTextField.text = "Greetings"
     }
 
     private func setupDateFieldAndPicker() {
@@ -97,6 +106,10 @@ class PostcardConfigurationViewController: UIViewController {
         constraints.append(imageView.heightAnchor.constraint(equalToConstant: 150.0))
         constraints.append(imageView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 8.0))
 
+        constraints.append(messageTextField.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 16.0))
+        constraints.append(messageTextField.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 16.0))
+        constraints.append(messageTextField.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 16.0))
+
         constraints.append(dateTextField.widthAnchor.constraint(equalToConstant: 150.0))
         constraints += dateStackView.constraintsToFillSuperviewHorizontally(margins: 50.0)
         constraints.append(dateStackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16.0))
@@ -113,7 +126,7 @@ class PostcardConfigurationViewController: UIViewController {
 
     /// Call to dismiss this modal view controller and send the resulting postcard out
     func doneEditing() {
-        let postcard = Postcard(message: "Should we go?",
+        let postcard = Postcard(message: messageTextField.text!,
                                 destination: Destination(name: imageName),
                                 bookDate: selectedDateString,
                                 imageName: imageName)
