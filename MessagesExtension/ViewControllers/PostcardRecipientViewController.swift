@@ -43,8 +43,16 @@ class PostcardRecipientViewController: UIViewController {
         setupConstraints()
     }
 
-    func bookSomething() {
-        print("✈️ Book Me!")
+    func deeplinkToExpediaBookings() {
+        // TODO: Assume origin is MSP for demo purposes
+        let dateString = todaysDate()
+        let imageName = postcard.imageName
+        let indexForAirportCode = imageName.index(imageName.startIndex, offsetBy: 3)
+        let airportCode = postcard.imageName.substring(to: indexForAirportCode)
+        let constructedDeeplinkURL = URL(string: "expda://flightSearch?origin=MSP&destination=\(airportCode)&departureDate=\(dateString)&numAdults=2")!
+        UIApplication.shared.open(constructedDeeplinkURL,
+                                  options: [String: Any](),
+                                  completionHandler: nil)
     }
 
     private func setupLabels() {
@@ -59,7 +67,7 @@ class PostcardRecipientViewController: UIViewController {
         bookButton.setTitleColor(.white, for: .normal)
         bookButton.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightSemibold)
         bookButton.backgroundColor = UIColor(hexString: "1A6EFF")
-        bookButton.addTarget(self, action: #selector(PostcardRecipientViewController.bookSomething), for: .touchUpInside)
+        bookButton.addTarget(self, action: #selector(PostcardRecipientViewController.deeplinkToExpediaBookings), for: .touchUpInside)
     }
 
     private func setupViews() {
@@ -93,5 +101,11 @@ class PostcardRecipientViewController: UIViewController {
         constraints.append(bookButton.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor))
 
         NSLayoutConstraint.activate(constraints)
+    }
+
+    private func todaysDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: Date())
     }
 }

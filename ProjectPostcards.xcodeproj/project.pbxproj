@@ -506,6 +506,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2486B4F0D1692BED82944012 /* Pods-MessagesExtension.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -521,6 +522,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 104194B957A27FEC9B7B23D1 /* Pods-MessagesExtension.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
