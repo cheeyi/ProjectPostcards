@@ -10,12 +10,10 @@ import UIKit
 
 class PostcardRecipientViewController: UIViewController {
 
-    let postcardImage: UIImage
-    let locationName: String
+    let postcard: Postcard
 
-    init(postcardImage: UIImage, locationName: String) {
-        self.postcardImage = postcardImage
-        self.locationName = locationName
+    init(postcard: Postcard) {
+        self.postcard = postcard
         super.init(nibName: nil, bundle: nil)
     }
 

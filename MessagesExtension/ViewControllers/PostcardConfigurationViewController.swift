@@ -12,11 +12,11 @@ import UIKit
 // TODO: @bryan
 class PostcardConfigurationViewController: UIViewController {
 
-    let locationName: String
-    var delegate: PostcardPickerViewController?
+    let imageName: String
+    var delegate: MessagesViewController?
 
     lazy var drawingView: DrawingView = {
-        let view = DrawingView(image: UIImage(named: self.locationName))
+        let view = DrawingView(image: UIImage(named: self.imageName))
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -35,7 +35,7 @@ class PostcardConfigurationViewController: UIViewController {
     }()
 
     init(locationName: String) {
-        self.locationName = locationName
+        imageName = locationName
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -69,10 +69,10 @@ class PostcardConfigurationViewController: UIViewController {
 
     /// Call to dismiss this modal view controller and send the resulting postcard out
     func doneEditing() {
-        let postcard = UIImage(named: "SFO - San Francisco") // TODO: Use actual user image
-        let imageTitle = "Test image title"
-        let imageSubtitle = "Test image subtitle"
-        let caption = "Test caption"
-        delegate?.postCardConfigurationViewDidEndEditing(postcard: postcard!, imageTitle: imageTitle, imageSubtitle: imageSubtitle, caption: caption)
+        let postcard = Postcard(message: "Should we go?",
+                                destination: Destination(name: imageName),
+                                bookDate: "today",
+                                imageName: imageName)
+        delegate?.postCardConfigurationViewDidEndEditing(postcard: postcard, controller: self)
     }
 }
