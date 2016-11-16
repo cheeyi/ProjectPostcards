@@ -76,7 +76,7 @@ class PostcardRecipientViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let selectedDate = dateFormatter.date(from: postcard.bookDate)
         dateFormatter.dateFormat = "MMMM dd, yyyy"
-        let dateString = dateFormatter.string(from: selectedDate!)
+        let dateString = dateFormatter.string(from: selectedDate ?? Date())
         postcardDescriptionLabel.text = "I'm going to \(postcard.destinationName()) on \(dateString). Let's go together!"
         postcardDescriptionLabel.font = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightLight)
         postcardDescriptionLabel.textColor = UIColor(hexString: "0A3D6B")
