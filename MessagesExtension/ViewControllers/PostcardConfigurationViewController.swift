@@ -9,17 +9,11 @@
 import Messages
 import UIKit
 
-// TODO: @bryan
 class PostcardConfigurationViewController: UIViewController {
 
     let imageName: String
+    let imageView: UIImageView
     var delegate: MessagesViewController?
-
-    lazy var drawingView: DrawingView = {
-        let view = DrawingView(image: UIImage(named: self.imageName))
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
 
     lazy var navBar: UINavigationBar = {
         let navBar = UINavigationBar(frame: CGRect.zero).withAutoLayout()
@@ -36,6 +30,9 @@ class PostcardConfigurationViewController: UIViewController {
 
     init(locationName: String) {
         imageName = locationName
+        imageView = UIImageView(image: UIImage(named: imageName)!).withAutoLayout()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -48,7 +45,7 @@ class PostcardConfigurationViewController: UIViewController {
         view.backgroundColor = .white
 
         view.addSubview(navBar)
-        view.addSubview(drawingView)
+        view.addSubview(imageView)
 
         setupConstraints()
     }
@@ -57,13 +54,12 @@ class PostcardConfigurationViewController: UIViewController {
         var constraints = [NSLayoutConstraint]()
         constraints.append(navBar.widthAnchor.constraint(equalToConstant: view.bounds.size.width))
         constraints.append(navBar.heightAnchor.constraint(equalToConstant: 44.0))
-        constraints.append(navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 86.0))
+        constraints.append(navBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 90))
 
-        constraints.append(drawingView.topAnchor.constraint(equalTo: navBar.bottomAnchor))
-        constraints.append(drawingView.leftAnchor.constraint(equalTo: view.leftAnchor))
-        constraints.append(drawingView.bottomAnchor.constraint(equalTo: view.bottomAnchor))
-        constraints.append(drawingView.rightAnchor.constraint(equalTo: view.rightAnchor))
-        
+        constraints += imageView.constraintsToFillSuperviewHorizontally()
+        constraints.append(imageView.heightAnchor.constraint(equalToConstant: 150.0))
+        constraints.append(imageView.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 8.0))
+
         NSLayoutConstraint.activate(constraints)
     }
 
