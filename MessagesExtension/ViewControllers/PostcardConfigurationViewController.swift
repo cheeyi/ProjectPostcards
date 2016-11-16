@@ -53,7 +53,7 @@ class PostcardConfigurationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hexString: "E8EAED")
 
         view.addSubview(navBar)
         view.addSubview(imageView)
@@ -63,6 +63,10 @@ class PostcardConfigurationViewController: UIViewController {
         setupDateFieldAndPicker()
         setupImageView()
         setupConstraints()
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 
     private func setupImageView() {
