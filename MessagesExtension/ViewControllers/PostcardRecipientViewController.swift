@@ -64,6 +64,9 @@ class PostcardRecipientViewController: UIViewController {
     private func setupLabels() {
         messageLabel.font = UIFont(name: "Parisish", size: 36.0)
         messageLabel.textColor = .white
+        messageLabel.shadowOffset = CGSize(width: 1, height: 1)
+        messageLabel.shadowColor = .black
+
         destinationLabel.font = UIFont(name: "Airstream", size: 96.0)
         destinationLabel.adjustsFontSizeToFitWidth = true
         destinationLabel.minimumScaleFactor = 0.3
@@ -102,8 +105,6 @@ class PostcardRecipientViewController: UIViewController {
         stampImageView.alpha = 0.7
 
         imageBackgroundView.backgroundColor = UIColor(hexString: "faebd7")
-        imageBackgroundView.layer.borderColor = UIColor.darkGray.cgColor
-        imageBackgroundView.layer.borderWidth = 1.0
         imageBackgroundView.layer.shadowOpacity = 0.5
         imageBackgroundView.layer.shadowRadius = 5
         imageBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 5)
